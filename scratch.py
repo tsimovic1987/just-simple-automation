@@ -7,9 +7,14 @@ import customtkinter as ctk
 class Interface(ctk.CTk):
     def __init__(self):
         super().__init__()
+        
+        # interface einstellungen:
         self.title("Test: Meine Modelle Klasse in ctk einbinden")
-
-
+        self.geometry("400x400")
+        
+        kundenwunsch = input("Sie wünschen? ")
+        # klasse reinladen und mit _ versehen. Nur für alle Fälle
+        self.waage_ = Modelle("Rollstuhlwaage", "Haushalt", kundenwunsch) # test instanz
 
 class Modelle:
     def __init__(self, modell: str, kategorie: str, kundenwunsch: str=None, csv_speichern: bool=None): 
