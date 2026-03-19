@@ -3,7 +3,7 @@ import pandas as pd
 
 
 class Modelle:
-    def __init__(self, modell: str, kategorie: str, kundenwunsch: str=None, csv_automatisch: bool): 
+    def __init__(self, modell: str, kategorie: str, kundenwunsch: str=None, csv_speichern: bool): 
         # kundenwunsch bleibt None und somit in der Exception eine Option
         # modell und kategorie sind bindend und müssen für alle Modelle() gelten
 
@@ -22,12 +22,20 @@ class Modelle:
         else:
             self.kundenwunsch = kundenwunsch
 
+
+        # lets try: 
+
+        if csv_speichern:
+            self.csv_auslesen("auftraege.csv")
+
     # csv datei erstellen lassen, am besten bei jedem instanzieren der Klasse
     # Idee: Ein neues Modell wird erstellt und alle Daten kommen automatisch in eine csv datei
 
-    def als_csv_speichern(self):
-        pass
-
+    def als_csv_speichern(self, csv_datei): # Testing
+        import csv
+        with open(csv_datei, "a", newline="") as f:
+            writer = csv.writer(f)
+            writer.writerow([self.modell, self.kategorie, self.kundenwunsch])
 
 
     def __str__(self):
