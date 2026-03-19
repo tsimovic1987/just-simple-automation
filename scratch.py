@@ -1,9 +1,17 @@
 import pandas as pd
+import customtkinter as ctk
+
+# versuche mir eine app aufzubauen um die Modelle dann dort anzuzeigen und zu speichern
+
+class Interface(ctk.CTk):
+    def __init__(self):
+        super().__init__()
+        self.title("Test: Meine Modelle Klasse in ctk einbinden")
 
 
 
 class Modelle:
-    def __init__(self, modell: str, kategorie: str, kundenwunsch: str=None, csv_speichern: bool): 
+    def __init__(self, modell: str, kategorie: str, kundenwunsch: str=None, csv_speichern: bool=None): 
         # kundenwunsch bleibt None und somit in der Exception eine Option
         # modell und kategorie sind bindend und müssen für alle Modelle() gelten
 
@@ -51,13 +59,16 @@ class Modelle:
         pass
     
 
+# Aber hier wird nur code ausgeführt zum testen..
+
+###############
+###############
+
 postwaage = Modelle("postwaage", "industriewaage", "muss in rot sein")
 print(postwaage)
 
 
 
 kundenwunsch = input("Irgendwelche wünsche für ihre Personenwaage? ")
-
-
 personenwaage = Modelle("Personenwaage", "Retail", kundenwunsch)
 print(personenwaage)
