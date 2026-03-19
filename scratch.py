@@ -2,6 +2,7 @@ import pandas as pd
 import customtkinter as ctk
 
 # versuche mir eine app aufzubauen um die Modelle dann dort anzuzeigen und zu speichern
+# wird später wahrscheinlich in die app.py datei wandern.
 
 class Interface(ctk.CTk):
     def __init__(self):
@@ -34,12 +35,12 @@ class Modelle:
         # lets try: 
 
         if csv_speichern:
-            self.csv_auslesen("auftraege.csv")
+            self.als_csv_speichern("auftraege.csv")
 
     # csv datei erstellen lassen, am besten bei jedem instanzieren der Klasse
     # Idee: Ein neues Modell wird erstellt und alle Daten kommen automatisch in eine csv datei
 
-    def als_csv_speichern(self, csv_datei): # Testing
+    def als_csv_speichern(self, csv_datei): # instanzvariabel die eine csv.datei sein muss
         import csv
         with open(csv_datei, "a", newline="") as f:
             writer = csv.writer(f)
