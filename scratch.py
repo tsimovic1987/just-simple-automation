@@ -42,10 +42,10 @@ class Modelle:
         return f"Modell: {self.modell} - Kategorie: {self.kategorie} - Kundenwunsch: {self.kundenwunsch}"
     
 
-    # csv ist für Zukunft geplant, aber nicht sicher ob es am final benötigt wird
+    # csv umwandeln in ein pandas df. Weitere Verwendung offen..
     def csv_auslesen(csv_datei: str):
         df = pd.read_csv(csv_datei, encoding="utf-8")
-        return df # nur als Platzhalter gedacht!
+        return df
     
     def kundenwunsch_anpassen():
         pass
