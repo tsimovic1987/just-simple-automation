@@ -22,15 +22,11 @@ class Modelle:
         # kategorie = Industrie, Haushalt, Medizin etc.        
         self.kategorie = kategorie
 
-        # kundenwunsch = None, optional
-        self.kundenwunsch = kundenwunsch
-        
         # kein input = "Keine Angabe" - Noch nicht final
         if not kundenwunsch:
             self.kundenwunsch = "Keine Angabe"
         else:
             self.kundenwunsch = kundenwunsch
-
 
         # lets try: 
 
