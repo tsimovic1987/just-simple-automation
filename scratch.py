@@ -13,8 +13,10 @@ class Interface(ctk.CTk):
         self.geometry("400x400")
         
         kundenwunsch = input("Sie wünschen? ")
-        # klasse reinladen und mit _ versehen. Nur für alle Fälle
-        self.waage_ = Modelle("Rollstuhlwaage", "Haushalt", kundenwunsch) # test instanz
+
+        self.waage_ = Modelle("Rollstuhlwaage", "Haushalt", kundenwunsch)
+
+
 
 class Modelle:
     def __init__(self, modell: str, kategorie: str, kundenwunsch: str=None, csv_speichern: bool=None): 
@@ -61,16 +63,23 @@ class Modelle:
         pass
     
 
-# Aber hier wird nur code ausgeführt zum testen..
 
-###############
-###############
-
-postwaage = Modelle("postwaage", "industriewaage", "muss in rot sein")
-print(postwaage)
+if __name__ == "__main__":
+    app = Interface()
+    app()
 
 
 
-kundenwunsch = input("Irgendwelche wünsche für ihre Personenwaage? ")
-personenwaage = Modelle("Personenwaage", "Retail", kundenwunsch)
-print(personenwaage)
+    # Aber hier wird nur code ausgeführt zum testen..
+
+    ###############
+    ###############
+
+    postwaage = Modelle("postwaage", "industriewaage", "muss in rot sein")
+    print(postwaage)
+
+
+
+    kundenwunsch = input("Irgendwelche wünsche für ihre Personenwaage? ")
+    personenwaage = Modelle("Personenwaage", "Retail", kundenwunsch)
+    print(personenwaage)
