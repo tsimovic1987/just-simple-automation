@@ -16,6 +16,8 @@ class Interface(ctk.CTk):
 
         self.waage_ = Modelle("Rollstuhlwaage", "Haushalt", kundenwunsch)
 
+        
+
 
 
 class Modelle:
@@ -64,10 +66,13 @@ class Modelle:
     
 
 
+def show_details(self):
+        # Zugriff auf die Methode des instanziierten Objekts
+        print(self.user.get_info())
+
 if __name__ == "__main__":
     app = Interface()
-    app()
-
+    app.mainloop()
 
 
     # Aber hier wird nur code ausgeführt zum testen..
