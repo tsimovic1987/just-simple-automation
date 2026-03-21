@@ -21,10 +21,10 @@ class Interface(ctk.CTk):
         # just to fill the empty CTk window with some labelss and a button
 
         self.label_modell = ctk.CTkLabel(self, text=f"Modell: {self.waage.modell}")
-        self.label_name.pack(pady=10)
+        self.label_modell.pack(pady=10)
 
         self.label_kategorie = ctk.CTkLabel(self, text=f"Kategorie: {self.waage.kategorie}")
-        self.label_name.pack(pady=10)
+        self.label_kategorie.pack(pady=10)
         
         self.button = ctk.CTkButton(self, text="Info zeigen", command=self.show_details)
         self.button.pack(pady=10)
@@ -79,7 +79,7 @@ class Modelle:
 
 def show_details(self):
         # Zugriff auf die Methode des instanziierten Objekts
-        print(self.user.get_info())
+        print(self.waage.get_info())
 
 if __name__ == "__main__":
     app = Interface()
