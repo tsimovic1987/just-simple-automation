@@ -1,3 +1,5 @@
+# in future i'll use english comments on my files!
+
 import pandas as pd
 import customtkinter as ctk
 
@@ -16,7 +18,16 @@ class Interface(ctk.CTk):
 
         self.waage_ = Modelle("Rollstuhlwaage", "Haushalt", kundenwunsch)
 
+        # just to fill the empty CTk window with some labelss and a button
+
+        self.label_modell = ctk.CTkLabel(self, text=f"Modell: {self.user.modell}")
+        self.label_name.pack(pady=10)
+
+        self.label_kategorie = ctk.CTkLabel(self, text=f"Kategorie: {self.user.kategorie}")
+        self.label_name.pack(pady=10)
         
+        self.button = ctk.CTkButton(self, text="Info zeigen", command=self.show_details)
+        self.button.pack(pady=10)
 
 
 
