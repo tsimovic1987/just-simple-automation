@@ -1,35 +1,7 @@
 # in future i'll use english comments on my files!
 
 import pandas as pd
-import customtkinter as ctk
-
-# versuche mir eine app aufzubauen um die Modelle dann dort anzuzeigen und zu speichern
-# wird später wahrscheinlich in die app.py datei wandern.
-
-class Interface(ctk.CTk):
-    def __init__(self):
-        super().__init__()
-        
-        # interface einstellungen:
-        self.title("Test: Meine Modelle Klasse in ctk einbinden")
-        self.geometry("400x400")
-        
-        kundenwunsch = input("Sie wünschen? ")
-
-        self.waage = Modelle("Rollstuhlwaage", "Haushalt", kundenwunsch)
-
-        # just to fill the empty CTk window with some labelss and a button
-
-        self.label_modell = ctk.CTkLabel(self, text=f"Modell: {self.waage.modell}")
-        self.label_modell.pack(pady=10)
-
-        self.label_kategorie = ctk.CTkLabel(self, text=f"Kategorie: {self.waage.kategorie}")
-        self.label_kategorie.pack(pady=10)
-        
-        self.button = ctk.CTkButton(self, text="Info zeigen", command=self.show_details)
-        self.button.pack(pady=10)
-
-
+import csv
 
 class Modelle:
     def __init__(self, modell: str, kategorie: str, kundenwunsch: str=None, csv_speichern: bool=None): 
@@ -48,54 +20,24 @@ class Modelle:
         else:
             self.kundenwunsch = kundenwunsch
 
-        # lets try: 
-
         if csv_speichern:
             self.als_csv_speichern("auftraege.csv")
 
-    # csv datei erstellen lassen, am besten bei jedem instanzieren der Klasse
-    # Idee: Ein neues Modell wird erstellt und alle Daten kommen automatisch in eine csv datei
-
-    def als_csv_speichern(self, csv_datei): # instanzvariabel die eine csv.datei sein muss
-        import csv
-        with open(csv_datei, "a", newline="") as f:
+    def als_csv_speichern(self, csv_datei): 
+        with open(csv_datei, "a", newline="", encoding="utf-8") as f:
             writer = csv.writer(f)
             writer.writerow([self.modell, self.kategorie, self.kundenwunsch])
 
-
     def __str__(self):
         return f"Modell: {self.modell} - Kategorie: {self.kategorie} - Kundenwunsch: {self.kundenwunsch}"
-    
 
-    # csv umwandeln in ein pandas df. Weitere Verwendung offen..
+    @staticmethod
     def csv_auslesen(csv_datei: str):
         df = pd.read_csv(csv_datei, encoding="utf-8")
         return df
     
-    def kundenwunsch_anpassen():
+    def kundenwunsch_anpassen(self):
         pass
-    
 
-
-def show_details(self):
-        # Zugriff auf die Methode des instanziierten Objekts
-        print(self.waage.get_info())
-
-if __name__ == "__main__":
-    app = Interface()
-    app.mainloop()
-
-
-    # Aber hier wird nur code ausgeführt zum testen..
-
-    ###############
-    ###############
-
-    postwaage = Modelle("postwaage", "industriewaage", "muss in rot sein")
-    print(postwaage)
-
-
-
-    kundenwunsch = input("Irgendwelche wünsche für ihre Personenwaage? ")
-    personenwaage = Modelle("Personenwaage", "Retail", kundenwunsch)
-    print(personenwaage)
+    def get_info(self):
+        return self.__str__()
