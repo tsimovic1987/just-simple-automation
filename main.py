@@ -1,43 +1,30 @@
-# in future i'll use english comments on my files!
-
-import pandas as pd
-import csv
+from interface import Interface
 
 class Modelle:
-    def __init__(self, modell: str, kategorie: str, kundenwunsch: str=None, csv_speichern: bool=None): 
-        # kundenwunsch bleibt None und somit in der Exception eine Option
-        # modell und kategorie sind bindend und müssen für alle Modelle() gelten
+    def __init__(self, model: str, category: str, costumer_request: str=None): 
+        # costumer_request gets None for an optional argument
 
-        self.modell = modell
-        # modell = Personenwaagen, Rollstuhlwagen, Postwaagen etc.
+        self.model = model
+        # model = Personenwaagen, Rollstuhlwagen, Postwaagen etc.
 
-        # kategorie = Industrie, Haushalt, Medizin etc.        
-        self.kategorie = kategorie
+        # category = Industrie, Haushalt, Medizin etc.        
+        self.category = category
 
         # kein input = "Keine Angabe" - Noch nicht final
-        if not kundenwunsch:
-            self.kundenwunsch = "Keine Angabe"
+        if not costumer_request:
+            self.costumer_request = "No Entry"
         else:
-            self.kundenwunsch = kundenwunsch
+            self.costumer_request = costumer_request
 
-        if csv_speichern:
-            self.als_csv_speichern("auftraege.csv")
-
-    def als_csv_speichern(self, csv_datei): 
-        with open(csv_datei, "a", newline="", encoding="utf-8") as f:
-            writer = csv.writer(f)
-            writer.writerow([self.modell, self.kategorie, self.kundenwunsch])
 
     def __str__(self):
-        return f"Modell: {self.modell} - Kategorie: {self.kategorie} - Kundenwunsch: {self.kundenwunsch}"
+        return f"Model: {self.model} - Category: {self.category} - Costumer Request: {self.costumer_request}"
 
-    @staticmethod
-    def csv_auslesen(csv_datei: str):
-        df = pd.read_csv(csv_datei, encoding="utf-8")
-        return df
-    
-    def kundenwunsch_anpassen(self):
-        pass
 
     def get_info(self):
         return self.__str__()
+
+
+if __name__ == "__main__":
+    app = Interface()
+    app.mainloop()
