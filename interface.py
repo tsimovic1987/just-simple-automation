@@ -1,5 +1,5 @@
 import customtkinter as ctk
-from main import Modelle
+from main import Models
 
 
 class Interface(ctk.CTk):
@@ -10,21 +10,21 @@ class Interface(ctk.CTk):
         self.title("Test: Meine Modelle Klasse in ctk einbinden")
         self.geometry("400x400")
         
-        kundenwunsch = input("Sie wünschen? ")
+        kundenwunsch = input("Special Order? ")
 
-        self.waage = Modelle("Rollstuhlwaage", "Haushalt", kundenwunsch)
+        self.scale = Models("Rollstuhlwaage", "Haushalt", kundenwunsch)
 
         # just to fill the empty CTk window with some labelss and a button
 
-        self.label_modell = ctk.CTkLabel(self, text=f"Modell: {self.waage.modell}")
-        self.label_modell.pack(pady=10)
+        self.label_model = ctk.CTkLabel(self, text=f"Modell: {self.scale.model}")
+        self.label_model.pack(pady=10)
 
-        self.label_kategorie = ctk.CTkLabel(self, text=f"Kategorie: {self.waage.kategorie}")
-        self.label_kategorie.pack(pady=10)
+        self.label_category = ctk.CTkLabel(self, text=f"Kategorie: {self.scale.category}")
+        self.label_category.pack(pady=10)
         
         self.button = ctk.CTkButton(self, text="Info zeigen", command=self.show_details)
         self.button.pack(pady=10)
 
     def show_details(self):
         # Zugriff auf die Methode des instanziierten Objekts
-        print(self.waage.get_info())
+        print(self.scale.get_info())
