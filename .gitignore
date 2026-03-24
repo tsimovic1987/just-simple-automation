@@ -5,7 +5,12 @@ build/
 dist/
 wheels/
 *.egg-info
-test.py
 
 # Virtual environments
 .venv
+
+# My IDE
+.vscode
+
+# Folder
+testing/
