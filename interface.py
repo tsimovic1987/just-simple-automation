@@ -1,5 +1,5 @@
 import customtkinter as ctk
-from scratch import Modelle
+from main import Modelle
 
 
 class Interface(ctk.CTk):
@@ -28,7 +28,3 @@ class Interface(ctk.CTk):
     def show_details(self):
         # Zugriff auf die Methode des instanziierten Objekts
         print(self.waage_.get_info())
-
-if __name__ == "__main__":
-    app = Interface()
-    app.mainloop()
