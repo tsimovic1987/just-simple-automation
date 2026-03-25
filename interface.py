@@ -1,5 +1,5 @@
 import customtkinter as ctk
-from main import Models
+from models import Models
 
 
 class Interface(ctk.CTk):
