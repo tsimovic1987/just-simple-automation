@@ -1,11 +1,11 @@
+from collections import Counter
+
 class PartsList:
     def __init__(self, model_obj):
-        
         self.model = model_obj
 
-
-        self.parts: dict = {
-            f"Load cell ({self.model.max_weight_g  / 1000} kg)": 1,     # example load cell
-            "Sechskantschraube M5": 5,                                  # example bolts
-            "Rubber": 2                                                 # example rubber
-        }
+        self.partslist = Counter({
+            "Bolts M5": 2,
+            "Nuts": 4,
+            # ...
+        })
