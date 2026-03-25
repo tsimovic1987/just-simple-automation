@@ -11,27 +11,30 @@ class Models:
 
         # FIXED ATTRIBUTES (Base Model)
 
-        self.model = model                  # Scale model
-        self.category = category            # Scale mategory (industry, household, etc.)
-        self.max_weight_g = max_weight_g    # The limit until ERR
-        self.accuracy = accuracy            # coming soon!
+        self.model = model                      # Scale model
+        self.category = category                # Scale mategory (industry, household, etc.)
+        self.max_weight_g = max_weight_g        # The limit until ERR
+        self.accuracy = accuracy                # Accuracy from the load cell
         # ...
 
         # FLEXIBLE ATTRIBUTES (Custom Model)
+        # just some random Attributes to test
 
-        self.is_on: bool = False
-        self.current_weight_0: int = 0
-        self.tare_weight_g: int = 0
-        self.is_overloaded: bool = False
-        # ...
+        self.is_on: bool = False                # Power On/Off
+        self.current_weight_0: int = 0          # Current weight
+        self.tare_weight_g: int = 0             # Current Tare Value
+        self.is_overloaded: bool = False        # Is it overloaded or not exception
+        
+        # just some examples how it could work in the later app
+        # just trying to figure out some ideas
 
     
     def __str__(self) -> str:
         return f""
 
+        # next dounder methods are coming soon! 
 
-    # ...
-
+# CHILDREN CLASS - The ordered objects
 
 class PostOfficeScale(Models):
     def __init__(self, category="Industry", max_weight_g=30_000):
