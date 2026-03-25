@@ -6,7 +6,7 @@ class Models:
         """
         This class contains everything that EVERY electronic scale in the world has in common.
 
-        More coming soon!
+        More coming soon! Placeholder!
         """
 
         # FIXED ATTRIBUTES (Base Model)
@@ -31,3 +31,16 @@ class Models:
 
 
     # ...
+
+
+class PostOfficeScale(Models):
+    def __init__(self, category="Industry", max_weight_g=30_000):
+        """
+        Placeholder!
+        """    
+        super().__init__(model="Post Office Model", category=category,
+                         max_weight_g=max_weight_g, accuracy=10)
+        
+        self.current_unit: str = "kg"
+        self.pc_interface: str = "usb3.0"
+        # ...
