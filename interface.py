@@ -6,13 +6,11 @@ class Interface(ctk.CTk):
     def __init__(self):
         super().__init__()
         
-        # interface einstellungen:
+        # interface settings
         self.title("Test: Meine Modelle Klasse in ctk einbinden")
         self.geometry("400x400")
-        
-        kundenwunsch = input("Special Order? ")
 
-        self.scale = Models("Rollstuhlwaage", "Haushalt", kundenwunsch)
+        self.scale = Models("Rollstuhlwaage", "Haushalt")
 
         # just to fill the empty CTk window with some labelss and a button
 
@@ -26,5 +24,4 @@ class Interface(ctk.CTk):
         self.button.pack(pady=10)
 
     def show_details(self):
-        # Zugriff auf die Methode des instanziierten Objekts
         print(self.scale.get_info())
