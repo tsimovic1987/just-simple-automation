@@ -51,13 +51,13 @@ class Scale:
     # CHILDREN CLASS
 
 class PostOfficeScale(Scale):
-    def __init__(self, category="Industry", max_weight_g=30_000):
-        """
-        Placeholder!
-        """    
-        super().__init__(model="Post Office Model", category=category,
-                         max_weight_g=max_weight_g, accuracy=10)
+    def __init__(self, category: str = "Industry", max_weight_g: int = 30000):
+        super().__init__(
+            model_name="Post Office Model",
+            category=category,
+            max_weight_g=max_weight_g,
+            accuracy_g=10
+        )
         
         self.current_unit: str = "kg"
         self.pc_interface: str = "usb3.0"
-        # ...
