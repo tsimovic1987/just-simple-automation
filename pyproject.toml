@@ -1,14 +1,20 @@
 [project]
-name = "justcode"
+name = "automation software project"
 version = "0.1.0"
 description = "requirements for automation software"
 readme = "README.md"
-requires-python = ">=3.14"
+requires-python = ">=3.12"
 dependencies = [
-    "black>=26.3.1",
     "customtkinter>=5.2.2",
-    "flet>=0.82.2",
-    "pandas>=3.0.1",
     "psutil>=7.2.2",
+]
+
+[dependency-groups]
+dev = [
+    "black>=26.3.1",
     "ruff>=0.15.6",
 ]
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
