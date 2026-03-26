@@ -1,42 +1,56 @@
 
 # BASE CLASS
 
-class Models:
-    def __init__(self, model: str, category: str, max_weight_g: int=50000, accuracy: int=10): 
+class Scale:
         """
-        This class contains everything that EVERY electronic scale in the world has in common.
-
-        More coming soon! Placeholder!
+        Base class for all electronic scales.
+        Contains shared attributes and the core logic.
         """
+        def __init__(
+                    self,
+                    model_name: str,
+                    category: str,
+                    max_weight_g: int,
+                    accuracy_g: float = 10
+        ):
+              
+            # FIXED ATTRIBUTES (Base Model)
+            self.model_name = model_name            # Scale model
+            self.category = category                # Scale mategory (industry, household, etc.)
+            self.max_weight_g = max_weight_g        # The limit until ERR
+            self.accuracy_g = accuracy_g            # Accuracy from the load cell
+            # ...
 
-        # FIXED ATTRIBUTES (Base Model)
+            # STATE ATTRIBUTES
+            self.is_on: bool = False                # Power On/Off
+            self.current_weight_g: int = 0          # Current weight
+            self.tare_weight_g: int = 0             # Current Tare Value
 
-        self.model = model                      # Scale model
-        self.category = category                # Scale mategory (industry, household, etc.)
-        self.max_weight_g = max_weight_g        # The limit until ERR
-        self.accuracy = accuracy                # Accuracy from the load cell
-        # ...
 
-        # FLEXIBLE ATTRIBUTES (Custom Model)
-        # just some random Attributes to test
-
-        self.is_on: bool = False                # Power On/Off
-        self.current_weight_0: int = 0          # Current weight
-        self.tare_weight_g: int = 0             # Current Tare Value
-        self.is_overloaded: bool = False        # Is it overloaded or not exception
+        @property
+        def is_overloaded(self) -> bool:
+            """
+            Auto checks if  the current weight exceeds the limit
+            """
+            return self.current_weight_g > self.max_weight_g
         
-        # just some examples how it could work in the later app
-        # just trying to figure out some ideas
-
+        @property
+        def net_weight(self) -> int:
+            """
+            Returns weight minus tare
+            """
+            return self.current_weight_g - self.tare_weight_g
     
-    def __str__(self) -> str:
-        return f""
+        def __repr__(self) -> str:
+            return f"Scale(model={self.model_name}, weight={self.current_weight_g}g, overloaded={self.is_overloaded})"
+        
+        def __str__(self) -> str:
+            status = "ON" if self.is_on else "OFF"
+            return f"{self.model_name} [{status}]: {self.current_weight_g}g / {self.max_weight_g}"
 
-        # next dounder methods are coming soon! 
+    # CHILDREN CLASS
 
-# CHILDREN CLASS - The ordered objects
-
-class PostOfficeScale(Models):
+class PostOfficeScale(Scale):
     def __init__(self, category="Industry", max_weight_g=30_000):
         """
         Placeholder!
