@@ -1,5 +1,5 @@
 [project]
-name = "automation software project"
+name = "automation_software_project"
 version = "0.1.0"
 description = "requirements for automation software"
 readme = "README.md"
