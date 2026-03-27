@@ -11,7 +11,7 @@ class Interface(ctk.CTk):
         # Test Class
         self.scale = PostOfficeScale()
 
-        self.label_model = ctk.CTkLabel(self, text=f"Modell: {self.scale.model}")
+        self.label_model = ctk.CTkLabel(self, text=f"Modell: {self.scale.model_name}")
         self.label_model.pack(pady=10)
 
         self.label_category = ctk.CTkLabel(self, text=f"Kategorie: {self.scale.category}")
