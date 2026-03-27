@@ -5,7 +5,7 @@ from models import PostOfficeScale
 class Interface(ctk.CTk):
     def __init__(self):
         super().__init__()
-        self.title("Test: Meine Modelle Klasse in ctk einbinden")
+        self.title("Trying out CTk for my models GUI")
         self.geometry("400x400")
 
         # Test Class
