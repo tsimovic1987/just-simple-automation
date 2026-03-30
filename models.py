@@ -35,11 +35,12 @@ class Scale(ABC):
         # STATE ATTRIBUTES
         self._id: str = None
         self.is_on: bool = False
+        self.display_is_on: bool = False
         self.current_weight_g: int = 0
         self.tare_weight_g: int = 0
 
     @abstractmethod
-    def generate_id(self):
+    def generate_id(self) -> None:
         """Forces subclasses to implement their own dynamic ID generation logic."""
         pass
 
@@ -61,16 +62,20 @@ class Scale(ABC):
             return 0
         return self.current_weight_g - self.tare_weight_g
 
-    def toggle_power(self):
+    def toggle_power(self) -> None:
         """Simple Power-Switch logic."""
         self.is_on = not self.is_on
         if not self.is_on:
             self.current_weight_g = 0
             self.tare_weight_g = 0
 
-    def display_info(self):
+    def toggle_display(self) -> None:
+        """Simple Display-Switch logic."""
+        self.display_is_on = not self.display_is_on    
+        
+    def display_info(self) -> str:
         """Simple info which display is installed"""
-        print(f"Display: {self.display_type.name}")
+        return(f"Display: {self.display_type.name}")
 
     def __eq__(self, other) -> bool:
         if not isinstance(other, Scale):
@@ -106,7 +111,7 @@ class PostOfficeScale(Scale):
         self.current_unit: str = "kg"
         self.pc_interface: str = "usb3.0"
 
-    def generate_id(self):
+    def generate_id(self) -> None:
         """Generates a unique ID specific to Post Office scales (e.g., 'POSTOFFICEMODEL-XXXXXX')."""
         random_number = uuid.uuid4().hex[:6].upper()
         self._id = f"{self.model_name.replace(' ', '').upper()}-{random_number}"
@@ -131,7 +136,7 @@ class KitchenScale(Scale):
         self.current_unit: str = "g"
         self.pc_interface: str = "usb-c"
 
-    def generate_id(self):
+    def generate_id(self) -> None:
         """Generates a unique ID specific to Kitchen scales (e.g., 'KITCHENSCALE-XXXXXX')."""
         random_number = uuid.uuid4().hex[:6].upper()
         self._id = f"{self.model_name.replace(' ', '').upper()}-{random_number}"
