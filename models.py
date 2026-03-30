@@ -1,7 +1,16 @@
 from abc import ABC, abstractmethod
 import uuid
+from enum import Enum
 
 # BASE CLASS
+
+class DisplayType(Enum):
+    """
+    Enum class for diplay type in the scale.
+    """
+    LCD = "Liquid Crystal Display"
+    LED = "Light Emitting Diode"
+    OLED = "Organic LED"
 
 class Scale(ABC):
     """
@@ -13,12 +22,14 @@ class Scale(ABC):
         model_name: str,
         category: str,
         max_weight_g: int,
+        display_type: DisplayType,
         accuracy_g: float = 10,
     ):
         # FIXED ATTRIBUTES
         self.model_name = model_name
         self.category = category
         self.max_weight_g = max_weight_g
+        self.display_type = display_type
         self.accuracy_g = accuracy_g
 
         # STATE ATTRIBUTES
@@ -57,6 +68,15 @@ class Scale(ABC):
             self.current_weight_g = 0
             self.tare_weight_g = 0
 
+    def display_info(self):
+        """Simple info which display is installed"""
+        print(f"Display: {self.display_type.name}")
+
+    def __eq__(self, other) -> bool:
+        if not isinstance(other, Scale):
+            return False
+        return self.get_id() == other.get_id()
+
     def __repr__(self) -> str:
         return f"Scale(model={self.model_name}, weight={self.current_weight_g}g, on={self.is_on})"
 
@@ -74,6 +94,7 @@ class PostOfficeScale(Scale):
             model_name="Post Office Model",
             category=category,
             max_weight_g=max_weight_g,
+            display_type=DisplayType.OLED,
             accuracy_g=10,
         )
         try:
@@ -98,6 +119,7 @@ class KitchenScale(Scale):
             model_name="Kitchen Scale",
             category=category,
             max_weight_g=max_weight_g,
+            display_type=DisplayType.LED,
             accuracy_g=1
         )
         try:
