@@ -29,9 +29,11 @@ class Scale(ABC):
 
     @abstractmethod
     def generate_id(self):
+        """Forces subclasses to implement their own dynamic ID generation logic."""
         pass
 
     def get_id(self) -> str:
+        """Returns the internally stored unique identifier for the scale."""
         return self._id
 
     @property
@@ -78,11 +80,13 @@ class PostOfficeScale(Scale):
             self.generate_id()
         except Exception as e:
             print(f"You can't create a scale without an ID {e}")
-        
+
+        # Just Placeholders for now, will be removed later.
         self.current_unit: str = "kg"
         self.pc_interface: str = "usb3.0"
 
     def generate_id(self):
+        """Generates a unique ID specific to Post Office scales (e.g., 'POSTOFFICEMODEL-XXXXXX')."""
         random_number = uuid.uuid4().hex[:6].upper()
         self._id = f"{self.model_name.replace(' ', '').upper()}-{random_number}"
 
@@ -99,10 +103,13 @@ class KitchenScale(Scale):
         try:
             self.generate_id()
         except Exception as e:
-            print(f"You can't create a scale without an ID {e}")    
+            print(f"You can't create a scale without an ID {e}")
+
+        # Just Placeholders for now, will be removed later.
         self.current_unit: str = "g"
         self.pc_interface: str = "usb-c"
 
     def generate_id(self):
+        """Generates a unique ID specific to Kitchen scales (e.g., 'KITCHENSCALE-XXXXXX')."""
         random_number = uuid.uuid4().hex[:6].upper()
         self._id = f"{self.model_name.replace(' ', '').upper()}-{random_number}"
