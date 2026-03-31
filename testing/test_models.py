@@ -1,6 +1,6 @@
 import unittest
 import uuid
-from models import Scale
+from models import Scale, DisplayType
 
 class DummyScale(Scale):
     """A concrete scale class intended solely for testing purposes, used to instantiate the abstract Scale class."""
@@ -11,11 +11,17 @@ class DummyScale(Scale):
 class TestScale(unittest.TestCase):
     def setUp(self):
         """Initialize a fresh DummyScale instance before each test method runs."""
-        self.scale = DummyScale(model_name="TestScale", category="Test", max_weight_g=1000)
+        self.scale = DummyScale(
+            model_name="TestScale", 
+            category="Test", 
+            max_weight_g=1000,
+            display_type=DisplayType.LCD
+        )
 
     def test_initial_state(self):
         """Verify that a newly instantiated scale is powered off with zero weight and tare."""
         self.assertFalse(self.scale.is_on)
+        self.assertFalse(self.scale.display_is_on)
         self.assertEqual(self.scale.current_weight_g, 0)
         self.assertEqual(self.scale.net_weight, 0)
 
