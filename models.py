@@ -102,15 +102,14 @@ class PostOfficeScale(Scale):
             display_type=DisplayType.OLED,
             accuracy_g=10,
         )
-        try:
-            self.generate_id()
-        except Exception as e:
-            print(f"You can't create a scale without an ID {e}")
+
+        self.generate_id()
 
         # Just Placeholders for now, will be removed later.
         self.current_unit: str = "kg"
         self.pc_interface: str = "usb3.0"
 
+    # try to find a way to save the id permanently and only generate a new one if the scale is deleted.
     def generate_id(self) -> None:
         """Generates a unique ID specific to Post Office scales (e.g., 'POSTOFFICEMODEL-XXXXXX')."""
         random_number = uuid.uuid4().hex[:6].upper()
@@ -127,15 +126,14 @@ class KitchenScale(Scale):
             display_type=DisplayType.LED,
             accuracy_g=1
         )
-        try:
-            self.generate_id()
-        except Exception as e:
-            print(f"You can't create a scale without an ID {e}")
+
+        self.generate_id()
 
         # Just Placeholders for now, will be removed later.
         self.current_unit: str = "g"
         self.pc_interface: str = "usb-c"
 
+    # try to find a way to save the id permanently and only generate a new one if the scale is deleted.
     def generate_id(self) -> None:
         """Generates a unique ID specific to Kitchen scales (e.g., 'KITCHENSCALE-XXXXXX')."""
         random_number = uuid.uuid4().hex[:6].upper()
