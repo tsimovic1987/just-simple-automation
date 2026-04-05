@@ -2,7 +2,6 @@ from abc import ABC, abstractmethod
 import uuid
 from enum import Enum
 
-# BASE CLASS
 
 class DisplayType(Enum):
     """
@@ -11,6 +10,32 @@ class DisplayType(Enum):
     LCD = "Liquid Crystal Display"
     LED = "Light Emitting Diode"
     OLED = "Organic LED"
+
+
+class InterfaceType(Enum):
+    """
+    Enum class for interface type in the scale.
+    """
+    USB = "USB"
+    BLUETOOTH_2 = "Bluetooth 2.0"
+    BLUETOOTH_3 = "Bluetooth 3.0"
+    BLUETOOTH_4 = "Bluetooth 4.0"
+    BLUETOOTH_5 = "Bluetooth 5.0"
+    WIFI_2_4 = "WiFi 2.4GHz"
+    WIFI_5 = "WiFi 5GHz"
+    WIFI_6 = "WiFi 6GHz"
+    LAN = "LAN"
+
+
+class UnitType(Enum):
+    """
+    Enum class for unit type in the scale.
+    """
+    G = "Gram"
+    KG = "Kilogram"
+    LB = "Pound"
+    OZ = "Ounce"
+
 
 class Scale(ABC):
     """
@@ -23,16 +48,19 @@ class Scale(ABC):
         category: str,
         max_weight_g: int,
         display_type: DisplayType,
+        interface_type: InterfaceType,
+        unit_type: UnitType,
         accuracy_g: float = 10,
     ):
-        # FIXED ATTRIBUTES
+
         self.model_name = model_name
         self.category = category
         self.max_weight_g = max_weight_g
         self.display_type = display_type
+        self.interface_type = interface_type
+        self.unit_type = unit_type
         self.accuracy_g = accuracy_g
 
-        # STATE ATTRIBUTES
         self._id: str = None
         self.is_on: bool = False
         self.display_is_on: bool = False
@@ -90,7 +118,6 @@ class Scale(ABC):
         weight = f"{self.current_weight_g}g" if self.is_on else "---"
         return f"{self.model_name} [{status}]: {weight} / {self.max_weight_g}g max"
 
-# CHILDREN CLASS
 
 class PostOfficeScale(Scale):
     """Specific scale model for post office usage."""
@@ -100,16 +127,13 @@ class PostOfficeScale(Scale):
             category=category,
             max_weight_g=max_weight_g,
             display_type=DisplayType.OLED,
+            interface_type=InterfaceType.LAN,
+            unit_type=UnitType.KG,
             accuracy_g=10,
         )
 
         self.generate_id()
 
-        # Just Placeholders for now, will be removed later.
-        self.current_unit: str = "kg"
-        self.pc_interface: str = "usb3.0"
-
-    # try to find a way to save the id permanently and only generate a new one if the scale is deleted.
     def generate_id(self) -> None:
         """Generates a unique ID specific to Post Office scales (e.g., 'POSTOFFICEMODEL-XXXXXX')."""
         random_number = uuid.uuid4().hex[:6].upper()
@@ -124,16 +148,13 @@ class KitchenScale(Scale):
             category=category,
             max_weight_g=max_weight_g,
             display_type=DisplayType.LED,
+            interface_type=InterfaceType.USB,
+            unit_type=UnitType.G,
             accuracy_g=1
         )
 
         self.generate_id()
 
-        # Just Placeholders for now, will be removed later.
-        self.current_unit: str = "g"
-        self.pc_interface: str = "usb-c"
-
-    # try to find a way to save the id permanently and only generate a new one if the scale is deleted.
     def generate_id(self) -> None:
         """Generates a unique ID specific to Kitchen scales (e.g., 'KITCHENSCALE-XXXXXX')."""
         random_number = uuid.uuid4().hex[:6].upper()
