@@ -1,6 +1,6 @@
 import unittest
 import uuid
-from models import Scale, DisplayType
+from models import Scale, DisplayType, InterfaceType, UnitType
 
 class DummyScale(Scale):
     """A concrete scale class intended solely for testing purposes, used to instantiate the abstract Scale class."""
@@ -15,7 +15,9 @@ class TestScale(unittest.TestCase):
             model_name="TestScale", 
             category="Test", 
             max_weight_g=1000,
-            display_type=DisplayType.LCD
+            display_type=DisplayType.LCD,
+            interface_type=InterfaceType.USB,
+            unit_type=UnitType.G
         )
 
     def test_initial_state(self):
