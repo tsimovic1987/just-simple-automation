@@ -5,14 +5,25 @@ from models import PostOfficeScale
 class Interface(ctk.CTk):
     def __init__(self):
         super().__init__()
-        self.title("Trying out CTk for my models GUI")
+        self.title("Scale GUI")
         self.geometry("400x400")
-
-        # Test Class
         self.scale = PostOfficeScale()
 
-        self.label_model = ctk.CTkLabel(self, text=f"Modell: {self.scale.model_name}")
-        self.label_model.pack(pady=10)
+        self.tabview = ctk.CTkTabview(self, width=350, height=300)
+        self.tabview.pack(padx=20, pady=20, expand=True, fill="both")
 
-        self.label_category = ctk.CTkLabel(self, text=f"Kategorie: {self.scale.category}")
-        self.label_category.pack(pady=10)
+        self.tabview.add("Scales")
+        self.tabview.add("Settings")
+
+        self.tabview.set("Scales")
+        
+        self.label_details = ctk.CTkLabel(self.tabview.tab("Scales"), text="Scale Information:")
+        self.label_details.pack(pady=20)
+        
+        self.label_settings = ctk.CTkLabel(self.tabview.tab("Settings"), text="System Settings:")
+        self.label_settings.pack(pady=20)
+
+
+if __name__ == "__main__":
+    app = Interface()
+    app.mainloop()
