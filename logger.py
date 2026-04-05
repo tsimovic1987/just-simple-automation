@@ -1,15 +1,16 @@
-from dataclasses import dataclass
+import csv
+from dataclasses import dataclass, field
 from datetime import datetime
+
 
 @dataclass
 class Measurement:
-    weight_g: int
+    scale_id: str
     scale_model: str
-    timestamp: datetime = datetime.now()
+    weight_g: int
+    is_overloaded: bool
+    timestamp: datetime = field(default_factory=datetime.now, compare=False)
 
-    
-    
-import csv
 
 class MeasurementLogger:
     def __init__(self, filename: str = "data.csv"):
@@ -18,4 +19,4 @@ class MeasurementLogger:
     def add_entry(self, entry: Measurement):
         with open(self.filename, mode="a", newline="") as file:
             writer = csv.writer(file)
-            writer.writerow([entry.timestamp, entry.scale_model, entry.weight_g])
+            writer.writerow([entry.timestamp, entry.scale_id, entry.scale_model, entry.weight_g, entry.is_overloaded])
